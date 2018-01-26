@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://dl.bintray.com/dreamscale/maven-public"
+        }
+    }
+    dependencies {
+        classpath "org.dreamscale:gradle-core:1.3.1"
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+
+ext {
+    customPublication = true
+
+    repositoryName = 'maven'
+    if (!project.hasProperty("mavenUrl")) {
+        mavenUrl = "https://dl.bintray.com/dreamscale/maven-public"
+    }
+    repositoryPublicUrl = mavenUrl + "/content/groups/public"
+    repositoryReleaseUrl = mavenUrl + "/content/repositories/releases"
+
+    customGradleBaseVersion = "2.14.1"
+    customGradleVersion = "${customGradleBaseVersion}-ds.1.0"
+    customGradleGroupId = "org.dreamscale"
+    customGradleArtifactId = "dreamscale-gradle"
+    customGradleScriptResourcePath = "customized.gradle"
+}
+
+apply plugin: 'org.dreamscale.custom-gradle'
+apply plugin: 'org.dreamscale.ide-ext'
+apply plugin: "maven-publish"
+
+version = ext.customGradleVersion
+
+// TODO: this should not be necessary... something is wrong with the custom-gradle plugin, need to investigate when time permits
+task copyCustomGradleFile(type: Copy) {
+    from 'customized.gradle'
+    into 'build/tmp'
+}
+buildCustomGradleDistro.dependsOn copyCustomGradleFile
+
+publishing {
+    publications {
+        GradleDistribution(MavenPublication) {
+            groupId customGradleGroupId
+            artifactId customGradleArtifactId
+            version customGradleVersion
+            artifact buildCustomGradleDistro
+        }
+    }
+}
+
+bintray {
+        user = project.hasProperty('bintray.user') ? project.property('bintray.user') : System.getenv('BINTRAY_USER')
+        key = project.hasProperty('bintray.key') ? project.property('bintray.key') : System.getenv('BINTRAY_API_KEY')
+
+        publications = ['GradleDistribution']
+        pkg {
+                repo = 'maven-public'
+                userOrg = 'dreamscale'
+                name = "${customGradleGroupId}:${customGradleArtifactId}"
+                desc = "DreamScale Gradle distribution"
+                websiteUrl = 'https://github.com/dreamscale-io/dreamscale-gradle'
+                issueTrackerUrl = 'https://github.com/dreamscale-io/dreamscale-gradle/issues'
+                vcsUrl = 'https://github.com/dreamscale-io/dreamscale-gradle.git'
+                licenses = ['Apache-2.0']
+                labels = ['gradle']
+        }
+}

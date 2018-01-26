@@ -1,0 +1,56 @@
+println "Using the DreamScale Gradle distro"
+
+allprojects {
+
+    def repositoryReadCredentials = null
+    if (hasReadCredentials(project)) {
+        repositoryReadCredentials = {
+            username repositoryReadUsername
+            password repositoryReadPassword
+        }
+    }
+
+    buildscript {
+        ext {
+            if (project.hasProperty("mavenUrl") == false) {
+                mavenUrl = "https://dl.bintray.com/dreamscale/maven-public"
+            }
+            if (project.hasProperty("repositoryPublicUrl") == false) {
+                repositoryPublicUrl = mavenUrl + "/content/groups/public"
+            }
+            if (project.hasProperty("repositoryReleaseUrl") == false) {
+                repositoryReleaseUrl = mavenUrl + "/content/repositories/releases"
+            }
+            if (project.hasProperty("repositorySnapshotUrl") == false) {
+                repositorySnapshotUrl = mavenUrl + "/content/repositories/snapshots"
+            }
+        }
+
+        repositories {
+            mavenLocal()
+            jcenter()
+            maven {
+                if (repositoryReadCredentials != null) {
+                    credentials repositoryReadCredentials
+                }
+                url repositoryPublicUrl
+            }
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven {
+            if (repositoryReadCredentials != null) {
+                credentials repositoryReadCredentials
+            }
+            url repositoryPublicUrl
+        }
+    }
+}
+
+
+def hasReadCredentials(project) {
+    return project.hasProperty("repositoryReadUsername") && project.hasProperty("repositoryReadPassword")
+}
