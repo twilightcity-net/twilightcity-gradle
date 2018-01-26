@@ -48,6 +48,17 @@ allprojects {
             url repositoryPublicUrl
         }
     }
+
+    ext["organization.repo.url"] = "https://github.com/dreamscale-io"
+    ext["organization.repo.connection"] = "scm:git:git@github.com:dreamscale-io"
+
+    ext["bintray.repo"] = "maven-public"
+    ext["bintray.userOrg"] = "dreamscale"
+
+    ext["maven.pom.packaging"] = "jar"
+    ext["maven.pom.developer.id"] = "dreamscale"
+    ext["maven.pom.developer.name"] = "DreamScale Open Source Development"
+    ext["maven.pom.developer.email"] = "opensource@dreamscale.io"
 }
 
 
