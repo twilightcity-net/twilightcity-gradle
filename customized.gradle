@@ -27,6 +27,11 @@ allprojects {
                 url repositoryPublicUrl
             }
         }
+
+        dependencies {
+            classpath "org.dreamscale:gradle-core:1.+"
+            classpath "org.dreamscale:gradle-templates:1.+"
+        }
     }
 
     repositories {
@@ -40,6 +45,8 @@ allprojects {
         }
     }
 
+    ext["dreamscale.printCorePluginVersion"] = ""
+
     ext["organization.repo.url"] = "https://github.com/dreamscale-io"
     ext["organization.repo.connection"] = "scm:git:git@github.com:dreamscale-io"
 
@@ -51,7 +58,6 @@ allprojects {
     ext["maven.pom.developer.name"] = "DreamScale Open Source Development"
     ext["maven.pom.developer.email"] = "opensource@dreamscale.io"
 }
-
 
 def hasReadCredentials(project) {
     return project.hasProperty("repositoryReadUsername") && project.hasProperty("repositoryReadPassword")

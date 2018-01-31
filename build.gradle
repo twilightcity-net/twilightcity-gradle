@@ -1,12 +1,13 @@
 buildscript {
     repositories {
         jcenter()
+        mavenLocal()
         maven {
             url "https://dl.bintray.com/dreamscale/maven-public"
         }
     }
     dependencies {
-        classpath "org.dreamscale:gradle-core:1.3.1"
+        classpath "org.dreamscale:gradle-core:1.3.+"
     }
 }
 
@@ -25,7 +26,7 @@ ext {
     repositoryReleaseUrl = mavenUrl + "/content/repositories/releases"
 
     customGradleBaseVersion = "2.14.1"
-    customGradleVersion = "${customGradleBaseVersion}-ds.1.0"
+    customGradleVersion = "${customGradleBaseVersion}-ds.1.1"
     customGradleGroupId = "org.dreamscale"
     customGradleArtifactId = "dreamscale-gradle"
     customGradleScriptResourcePath = "customized.gradle"
@@ -36,13 +37,6 @@ apply plugin: 'org.dreamscale.ide-ext'
 apply plugin: "maven-publish"
 
 version = ext.customGradleVersion
-
-// TODO: this should not be necessary... something is wrong with the custom-gradle plugin, need to investigate when time permits
-task copyCustomGradleFile(type: Copy) {
-    from 'customized.gradle'
-    into 'build/tmp'
-}
-buildCustomGradleDistro.dependsOn copyCustomGradleFile
 
 publishing {
     publications {
