@@ -31,6 +31,9 @@ allprojects {
         dependencies {
             classpath "org.dreamscale:gradle-core:1.+"
             classpath "org.dreamscale:gradle-templates:1.+"
+            if (project.hasProperty("springBootVersion")) {
+                classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+            }
         }
     }
 
