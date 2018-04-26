@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         mavenLocal()
         maven {
-            url "https://dl.bintray.com/dreamscale/maven-public"
+            url "https://dl.bintray.com/dreamscale-io/maven-public"
         }
     }
     dependencies {
@@ -20,7 +20,7 @@ ext {
 
     repositoryName = 'maven'
     if (!project.hasProperty("mavenUrl")) {
-        mavenUrl = "https://dl.bintray.com/dreamscale/maven-public"
+        mavenUrl = "https://dl.bintray.com/dreamscale-io/maven-public"
     }
     repositoryPublicUrl = mavenUrl + "/content/groups/public"
     repositoryReleaseUrl = mavenUrl + "/content/repositories/releases"
@@ -56,7 +56,7 @@ bintray {
         publications = ['GradleDistribution']
         pkg {
                 repo = 'maven-public'
-                userOrg = 'dreamscale'
+                userOrg = 'dreamscale-io'
                 name = "${customGradleGroupId}:${customGradleArtifactId}"
                 desc = "DreamScale Gradle distribution"
                 websiteUrl = 'https://github.com/dreamscale-io/dreamscale-gradle'

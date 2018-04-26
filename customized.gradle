@@ -13,7 +13,7 @@ allprojects {
     buildscript {
         ext {
             if (project.hasProperty("repositoryPublicUrl") == false) {
-                repositoryPublicUrl = "https://dl.bintray.com/dreamscale/maven-public"
+                repositoryPublicUrl = "https://dl.bintray.com/dreamscale-io/maven-public"
             }
         }
 
@@ -29,8 +29,10 @@ allprojects {
         }
 
         dependencies {
-            classpath "org.dreamscale:gradle-core:1.+"
-            classpath "org.dreamscale:gradle-templates:1.+"
+            if (project.name != "gradle-core" && project.name != "gradle-templates") {
+                classpath "org.dreamscale:gradle-core:1.+"
+                classpath "org.dreamscale:gradle-templates:1.+"
+            }
             if (project.hasProperty("springBootVersion")) {
                 classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
             }
