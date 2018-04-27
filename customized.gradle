@@ -56,7 +56,7 @@ allprojects {
     ext["organization.repo.connection"] = "scm:git:git@github.com:dreamscale-io"
 
     ext["bintray.repo"] = "maven-public"
-    ext["bintray.userOrg"] = "dreamscale"
+    ext["bintray.userOrg"] = "dreamscale-io"
 
     ext["maven.pom.packaging"] = "jar"
     ext["maven.pom.developer.id"] = "dreamscale"
