@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         mavenLocal()
         maven {
-            url "https://dl.bintray.com/dreamscale-io/maven-public"
+            url "http://nexus.twilightcity.net:8081/repository/public"
         }
     }
     dependencies {
@@ -11,16 +11,12 @@ buildscript {
     }
 }
 
-plugins {
-    id "com.jfrog.bintray" version "1.7"
-}
-
 ext {
     customPublication = true
 
     repositoryName = 'maven'
     if (!project.hasProperty("mavenUrl")) {
-        mavenUrl = "https://dl.bintray.com/dreamscale-io/maven-public"
+        mavenUrl = "http://nexus.twilightcity.net:8081/repository/public"
     }
     repositoryPublicUrl = mavenUrl + "/content/groups/public"
     repositoryReleaseUrl = mavenUrl + "/content/repositories/releases"
@@ -49,6 +45,9 @@ publishing {
     }
 }
 
+downloadGradle.gradleDownloadBase = "https://downloads.gradle-dn.com/distributions"
+
+/*
 bintray {
         user = project.hasProperty('bintray.user') ? project.property('bintray.user') : System.getenv('BINTRAY_USER')
         key = project.hasProperty('bintray.apiKey') ? project.property('bintray.apiKey') : System.getenv('BINTRAY_API_KEY')
@@ -66,3 +65,4 @@ bintray {
                 labels = ['gradle']
         }
 }
+*/

@@ -13,7 +13,7 @@ allprojects {
     buildscript {
         ext {
             if (project.hasProperty("repositoryPublicUrl") == false) {
-                repositoryPublicUrl = "https://dl.bintray.com/dreamscale-io/maven-public"
+                repositoryPublicUrl = "http://nexus.twilightcity.net:8081/repository/public
             }
         }
 
@@ -52,16 +52,16 @@ allprojects {
 
     ext["dreamscale.printCorePluginVersion"] = ""
 
-    ext["organization.repo.url"] = "https://github.com/dreamscale-io"
-    ext["organization.repo.connection"] = "scm:git:git@github.com:dreamscale-io"
+    ext["organization.repo.url"] = "https://github.com/twilightcity-net"
+    ext["organization.repo.connection"] = "scm:git:git@github.com:twilightcity-net"
 
     ext["bintray.repo"] = "maven-public"
-    ext["bintray.userOrg"] = "dreamscale-io"
+    ext["bintray.userOrg"] = "twilightcity-net"
 
     ext["maven.pom.packaging"] = "jar"
-    ext["maven.pom.developer.id"] = "dreamscale"
-    ext["maven.pom.developer.name"] = "DreamScale Open Source Development"
-    ext["maven.pom.developer.email"] = "opensource@dreamscale.io"
+    ext["maven.pom.developer.id"] = "twilightcity"
+    ext["maven.pom.developer.name"] = "TwilightCity Open Source Development"
+    ext["maven.pom.developer.email"] = "opensource@twilightcity.net"
 }
 
 def hasReadCredentials(project) {
