@@ -3,13 +3,10 @@
 DreamScale Gradle distributions, to avoid having to repeatedly declare repository setup.
 
 
-## Publishing to Bintray
+## Building
 
-Make sure you have a bintray account and are a member of the [DreamScale organization](https://bintray.com/dreamscale/organization/edit)
+Run `gw clean build`
 
-Open your [user profile](https://bintray.com/profile/edit/organizations) and retrieve your API Key
+The gradle distribution is generated in `build/gradle-dist` and can be manually uploaded wherever.  
+This mechanism should be eventualy automated.
 
-Execute bintray upload `gw bintrayUpload -Pbintray.user=<bintray user> -Pbintray.apiKey=<api key>`
-
-Open the DreamScale [common-test](https://bintray.com/dreamscale/maven-public/org.dreamscale%3Agradle-distributions) package and
-click the [Publish](https://bintray.com/dreamscale/maven-public/org.dreamscale%3Agradle-distributions/publish) link

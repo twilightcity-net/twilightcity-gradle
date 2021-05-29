@@ -13,7 +13,7 @@ allprojects {
     buildscript {
         ext {
             if (project.hasProperty("repositoryPublicUrl") == false) {
-                repositoryPublicUrl = "http://nexus.twilightcity.net:8081/repository/public
+                repositoryPublicUrl = "http://nexus.twilightcity.net:8081/repository/public"
             }
         }
 
