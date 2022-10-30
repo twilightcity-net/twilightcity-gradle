@@ -1,6 +1,6 @@
 # Gradle Distribution
 
-DreamScale Gradle distributions, to avoid having to repeatedly declare repository setup.
+TwilightCity Gradle distributions, to avoid having to repeatedly declare repository setup.
 
 
 ## Building
